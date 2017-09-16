@@ -5,8 +5,24 @@ import {
   Text,
   View
 } from 'react-native';
+import * as firebase from 'firebase';
+
+
+var config = {
+    apiKey: "AIzaSyCaaH4Y2qYQys5y6orVhymewrqKwvnGJvM",
+    authDomain: "rntodoapp-766cd.firebaseapp.com",
+    databaseURL: "https://rntodoapp-766cd.firebaseio.com",
+    projectId: "rntodoapp-766cd",
+    storageBucket: "rntodoapp-766cd.appspot.com",
+    messagingSenderId: "95727791919"
+  };
+  const firebaseApp = firebase.initializeApp(config);
+
 
 export default class reactNativeTodo extends Component {
+  constructor(props){
+    super(props);
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -18,21 +34,9 @@ export default class reactNativeTodo extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#f2f2f2',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
 
 AppRegistry.registerComponent('reactNativeTodo', () => reactNativeTodo);
