@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import * as firebase from 'firebase';
+import ActionButton from './ActionButton';
 
 
 var config = {
@@ -23,10 +24,15 @@ export default class reactNativeTodo extends Component {
   constructor(props){
     super(props);
   }
+
+  onpress(){
+    alert('wor');
+  }
   render() {
     return (
       <View style={styles.container}>
-        
+        <Text>AM working</Text>
+        <ActionButton onPress={this.onpress} title="save to todo"/>
       </View>
     );
   }
@@ -34,8 +40,9 @@ export default class reactNativeTodo extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#1abc9c',
     flex: 1,
+    padding: 20
   }
 });
 
