@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import * as firebase from 'firebase';
 import ActionButton from './ActionButton';
+import ListItem from './ListITem';
 
 
 var config = {
@@ -31,7 +32,7 @@ export default class reactNativeTodo extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>AM working</Text>
+        <ListItem />
         <ActionButton onPress={this.onpress} title="save to todo"/>
       </View>
     );
