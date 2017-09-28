@@ -54,12 +54,15 @@ export default class reactNativeTodo extends Component {
           <TextInput 
             placeholder="What are you doing todo ?"
             onSubmitEditing={this.onSubmit}
+            underlineColorAndroid="transparent"
+            style={{backgroundColor: "#fff", padding: 15, borderRadius: 5}}
           />
-          <TouchableHighlight>
-            <Text>Add To Todo</Text>
+          <TouchableHighlight style={{backgroundColor: "#1abc9c", padding: 15, marginTop: 10, borderRadius: 5}}>
+            <Text style={{color: '#fff', fontSize: 16, textAlign: "center"}}>Add To Todo</Text>
           </TouchableHighlight>
         </View>
         <FlatList 
+          style={{marginTop: 50}}
           data={this.state.todos}
           renderItem={({item}) => 
             <View style={{backgroundColor: '#fff', padding: 10, marginTop: 10}}>
