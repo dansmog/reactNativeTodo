@@ -33,14 +33,17 @@ export default class reactNativeTodo extends Component {
         {
           id: Date.now() + 1,
           todo: "Create a basic todo app in react-native",
+          priority: 'high'
         },
         {
           id: Date.now() + 2,
           todo: "Create a basic todo app in react-native",
+          priority: 'average'
         },
         {
           id: Date.now() + 3,
           todo: "Create a basic todo app in react-native",
+          priority: 'low'
         },
       ]
     }
@@ -59,10 +62,12 @@ export default class reactNativeTodo extends Component {
           <TextInput 
             placeholder="What are you doing todo ?"
             onSubmitEditing={this.onSubmit}
-            underlineColorAndroid="transparent"
-            style={{backgroundColor: "#fff", padding: 15, borderRadius: 5}}
+            style={{backgroundColor: "#fff", padding: 10, borderRadius: 3}}
           />
-          <TouchableHighlight style={{backgroundColor: "#1abc9c", padding: 15, marginTop: 10, borderRadius: 5}}>
+          <TouchableHighlight 
+            style={{backgroundColor: "#1abc9c", padding: 10, marginTop: 10, borderRadius: 3}}
+            onPress={this.addTodo}
+          >
             <Text style={{color: '#fff', fontSize: 16, textAlign: "center"}}>Add To Todo</Text>
           </TouchableHighlight>
         </View>
@@ -70,8 +75,14 @@ export default class reactNativeTodo extends Component {
           style={{marginTop: 50}}
           data={this.state.todos}
           renderItem={({item}) => 
-            <View style={{backgroundColor: '#fff', padding: 10, marginTop: 10}}>
-              <Text style={{color: '#000'}}>{item.todo}</Text>
+            <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", backgroundColor: '#fff', borderRadius: 3, paddingHorizontal: 10, paddingVertical: 15, marginTop: 10}}>
+              <View>
+                <Text style={{color: '#000'}}>{item.todo}</Text>
+                <Text style={{backgroundColor: "#1abc9c", padding: 2, marginTop: 5, width: 50, fontSize: 9, borderRadius: 3, textAlign: 'center'}}>{item.priority}</Text>
+              </View>
+              <View>
+                <Text>X</Text>
+              </View>
             </View>
           }
           keyExtractor={this.keyExtractor}
@@ -83,7 +94,7 @@ export default class reactNativeTodo extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2c3e50',
+    backgroundColor: '#fff',
     flex: 1,
     padding: 20
   }
