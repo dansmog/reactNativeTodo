@@ -4,7 +4,9 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList
+  FlatList,
+  TextInput,
+  TouchableHighlight
 } from 'react-native';
 // import * as firebase from 'firebase';
 // import ActionButton from './ActionButton';
@@ -48,10 +50,15 @@ export default class reactNativeTodo extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/*<StatusBar 
-        backgroundColor="#fff" 
-        barStyle="light-content"
-        />*/}
+        <View>
+          <TextInput 
+            placeholder="What are you doing todo ?"
+            onSubmitEditing={this.onSubmit}
+          />
+          <TouchableHighlight>
+            <Text>Add To Todo</Text>
+          </TouchableHighlight>
+        </View>
         <FlatList 
           data={this.state.todos}
           renderItem={({item}) => 
