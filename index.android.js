@@ -51,7 +51,7 @@ export default class reactNativeTodo extends Component {
           todo: "Authorization with Firebase in react-native",
         },
       ],
-      todoText: "",
+      todoText: "what are you doing todo ?",
     }
   }
 
@@ -75,7 +75,7 @@ export default class reactNativeTodo extends Component {
         />
         <View style={{ padding: 10}}>
           <TextInput 
-            placeholder="What are you doing todo ?"
+            placeholder={this.state.todoText}
             onSubmitEditing={this.onSubmit}
             underlineColorAndroid="transparent"
             onChangeText={ (todoText) => this.setState({todoText})  }
