@@ -9,8 +9,8 @@ import {
   TouchableHighlight,
   StatusBar
 } from 'react-native';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 // import * as firebase from 'firebase';
-// import ActionButton from './ActionButton';
 // import ListItem from './ListITem';
 
 
@@ -33,60 +33,78 @@ export default class reactNativeTodo extends Component {
         {
           id: Date.now() + 1,
           todo: "Create a basic todo app in react-native",
-          priority: 'high'
         },
         {
           id: Date.now() + 2,
-          todo: "Create a basic todo app in react-native",
-          priority: 'average'
+          todo: "Start learning Meteorjs Properly",
         },
         {
           id: Date.now() + 3,
-          todo: "Create a basic todo app in react-native",
-          priority: 'low'
+          todo: "Finish setting up sass and webpack with es6",
         },
-      ]
+        {
+          id: Date.now() + 4,
+          todo: "Learn Async/await in javascript",
+        },
+        {
+          id: Date.now() + 5,
+          todo: "Authorization with Firebase in react-native",
+        },
+      ],
+      todoText: "",
     }
   }
 
   keyExtractor = (item, index) => item.id;
 
+  addTodo = () => {
+    let text = this.state.todoText;
+    let todo = {
+      id: Date.now() + 1,
+      todo: text
+    }
+    this.setState({ todos: [...this.state.todos, todo]})
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <StatusBar 
-          backgroundColor= "#2c3e50"
+          backgroundColor= "#1abc9c"
           barStyle="light-content"
         />
-        <View>
+        <View style={{ padding: 10}}>
           <TextInput 
             placeholder="What are you doing todo ?"
             onSubmitEditing={this.onSubmit}
-            style={{backgroundColor: "#fff", padding: 10, borderRadius: 3}}
+            underlineColorAndroid="transparent"
+            onChangeText={ (todoText) => this.setState({todoText})  }
+            style={{backgroundColor: "#fff", padding: 9, borderRadius: 2}}
           />
           <TouchableHighlight 
-            style={{backgroundColor: "#1abc9c", padding: 10, marginTop: 10, borderRadius: 3}}
+            style={{backgroundColor: "#1abc9c", paddingVertical: 15, paddingHorizontal: 10,  marginTop: 10, borderRadius: 2}}
             onPress={this.addTodo}
           >
-            <Text style={{color: '#fff', fontSize: 16, textAlign: "center"}}>Add To Todo</Text>
+            <Text style={{color: '#fff', fontSize: 16, textAlign: "center"}}>Add to todo</Text>
           </TouchableHighlight>
         </View>
-        <FlatList 
-          style={{marginTop: 50}}
-          data={this.state.todos}
-          renderItem={({item}) => 
-            <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", backgroundColor: '#fff', borderRadius: 3, paddingHorizontal: 10, paddingVertical: 15, marginTop: 10}}>
-              <View>
-                <Text style={{color: '#000'}}>{item.todo}</Text>
-                <Text style={{backgroundColor: "#1abc9c", padding: 2, marginTop: 5, width: 50, fontSize: 9, borderRadius: 3, textAlign: 'center'}}>{item.priority}</Text>
+        <View style={{padding: 10}}>
+          <FlatList 
+            style={{marginTop: 30}}
+            data={this.state.todos}
+            renderItem={({item}) => 
+              <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-between", backgroundColor: '#fff', borderRadius: 2, paddingHorizontal: 10, paddingVertical: 15, marginTop: 5}}>
+                <View>
+                  <Text style={{color: '#000'}}>{item.todo}</Text>
+                </View>
+                <View>
+                  <Text style={{fontFamily: "Segoe UI"}}><Icon name="trash" size={20} color="red"/></Text>
+                </View>
               </View>
-              <View>
-                <Text>X</Text>
-              </View>
-            </View>
-          }
-          keyExtractor={this.keyExtractor}
-        />
+            }
+            keyExtractor={this.keyExtractor}
+          />
+        </View>
       </View>
     );
   }
@@ -94,9 +112,8 @@ export default class reactNativeTodo extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#23eebc',
     flex: 1,
-    padding: 20
   }
 });
 
