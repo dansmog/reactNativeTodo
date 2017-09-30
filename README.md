@@ -1,6 +1,6 @@
 <p>
-<img src="src/todo-list.png" alt="todo-list-item screen"/>
-<img src="src/empty-scren-todo.png" alt="empty screen todo list"/>
+<img src="./todo-list.png" alt="todo-list-item screen"/>
+<img src="./empty-scren-todo.png" alt="empty screen todo list"/>
 </p>
 
 ### A TODO LIST APP IN REACT-NATIVE WITH FIREBASE INTEGRATION
