@@ -7,6 +7,7 @@ import {
   FlatList,
   TextInput,
   TouchableHighlight,
+  TouchableOpacity,
   StatusBar
 } from 'react-native';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
@@ -30,26 +31,7 @@ export default class reactNativeTodo extends Component {
     super(props);
     this.state = {
       todos: [
-        {
-          id: Date.now() + 1,
-          todo: "Create a basic todo app in react-native",
-        },
-        {
-          id: Date.now() + 2,
-          todo: "Start learning Meteorjs Properly",
-        },
-        {
-          id: Date.now() + 3,
-          todo: "Finish setting up sass and webpack with es6",
-        },
-        {
-          id: Date.now() + 4,
-          todo: "Learn Async/await in javascript",
-        },
-        {
-          id: Date.now() + 5,
-          todo: "Authorization with Firebase in react-native",
-        },
+  
       ],
       todoText: "what are you doing todo ?",
     }
@@ -59,38 +41,20 @@ export default class reactNativeTodo extends Component {
 
   addTodo = () => {
     let text = this.state.todoText;
-    let todo = {
-      id: Date.now() + 1,
-      todo: text
+    if(text){
+      let todo = {
+        id: Date.now() + 1,
+        todo: text
+      }
+      this.setState({ todos: [...this.state.todos, todo], todoText: ''})
     }
-    this.setState({ todos: [...this.state.todos, todo]})
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <StatusBar 
-          backgroundColor= "#1abc9c"
-          barStyle="light-content"
-        />
-        <View style={{ padding: 10}}>
-          <TextInput 
-            placeholder={this.state.todoText}
-            onSubmitEditing={this.onSubmit}
-            underlineColorAndroid="transparent"
-            onChangeText={ (todoText) => this.setState({todoText})  }
-            style={{backgroundColor: "#fff", padding: 9, borderRadius: 2}}
-          />
-          <TouchableHighlight 
-            style={{backgroundColor: "#1abc9c", paddingVertical: 15, paddingHorizontal: 10,  marginTop: 10, borderRadius: 2}}
-            onPress={this.addTodo}
-          >
-            <Text style={{color: '#fff', fontSize: 16, textAlign: "center"}}>Add to todo</Text>
-          </TouchableHighlight>
-        </View>
-        <View style={{padding: 10}}>
-          <FlatList 
-            style={{marginTop: 30}}
+  renderList = () => {
+    if(this.state.todos.length !== 0){
+      return (
+        <FlatList 
+            style={{marginTop: 20}}
             data={this.state.todos}
             renderItem={({item}) => 
               <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-between", backgroundColor: '#fff', borderRadius: 2, paddingHorizontal: 10, paddingVertical: 15, marginTop: 5}}>
@@ -104,6 +68,37 @@ export default class reactNativeTodo extends Component {
             }
             keyExtractor={this.keyExtractor}
           />
+      )
+    }else{
+      return <Text style={{textAlign: 'center', fontSize: 24, color: "#fff", marginTop: 100}}>NO TODOS ADDED YET</Text>
+    }
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <StatusBar 
+          backgroundColor= "#1abc9c"
+          barStyle="light-content"
+        />
+        <View style={{ padding: 10, marginTop: 20}}>
+          <TextInput 
+            value={this.state.todoText}
+            placeholder="what are you doing today?"
+            onSubmitEditing={this.onSubmit}
+            underlineColorAndroid="transparent"
+            onChangeText={ (todoText) => this.setState({todoText})  }
+            style={{backgroundColor: "#fff", padding: 9, borderRadius: 2}}
+          />
+          <TouchableOpacity 
+            style={{backgroundColor: "#1abc9c", paddingVertical: 15, paddingHorizontal: 10,  marginTop: 10, borderRadius: 2}}
+            onPress={this.addTodo}
+          >
+            <Text style={{color: '#fff', fontSize: 16, textAlign: "center"}}>Add to todo</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{padding: 10}}>
+          { this.renderList() }
         </View>
       </View>
     );
