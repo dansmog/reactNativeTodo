@@ -70,7 +70,7 @@ export default class reactNativeTodo extends Component {
                 </View>
                 <View>
                   <Text 
-                    style={{fontFamily: "Segoe UI", marginRight: 20, fontWeight: 'bold'}}
+                    style={{fontFamily: "Segoe UI", marginRight: 20, fontWeight: 'bolder'}}
                     onPress={ () => {
                       let newList = this.state.todos.filter( (e, i) => e.id !== item.id )
                       this.setState({todos: newList})
