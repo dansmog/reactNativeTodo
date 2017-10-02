@@ -17,3 +17,6 @@ Run `yarn install`
 cd into the directory and run `react-native run-android` or `react-native run-ios`
 alongside, run `adb reverse tcp:8081 tcp:8081`
 
+
+##### check out the demo at 
+<a href="https://snack.expo.io/Sy3jv6ynb">ReactNativeTodo demo on snack.expo.io</a>
