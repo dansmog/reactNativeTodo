@@ -50,6 +50,13 @@ export default class reactNativeTodo extends Component {
     }
   }
 
+  deletTodo = (id) => {
+    // let newList = this.state.todos.filter( (e, i) => i !== id )
+    // this.setState({todos: newList})
+
+
+  }
+
   renderList = () => {
     if(this.state.todos.length !== 0){
       return (
@@ -57,12 +64,20 @@ export default class reactNativeTodo extends Component {
             style={{marginTop: 20}}
             data={this.state.todos}
             renderItem={({item}) => 
-              <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-between", backgroundColor: '#fff', borderRadius: 2, paddingHorizontal: 10, paddingVertical: 15, marginTop: 5}}>
+              <View id={item.id} style={{ flex: 1, flexDirection: "row", justifyContent: "space-between", backgroundColor: '#fff', borderRadius: 2, paddingHorizontal: 10, paddingVertical: 15, marginTop: 5}}>
                 <View>
                   <Text style={{color: '#000'}}>{item.todo}</Text>
                 </View>
                 <View>
-                  <Text style={{fontFamily: "Segoe UI"}}><Icon name="trash" size={20} color="red"/></Text>
+                  <Text 
+                    style={{fontFamily: "Segoe UI", marginRight: 20, fontWeight: 'bold'}}
+                    onPress={ () => {
+                      let newList = this.state.todos.filter( (e, i) => e.id !== item.id )
+                      this.setState({todos: newList})
+                    }}
+                  >
+                    <Icon name="trash" size={20} color="red"/>
+                  </Text>
                 </View>
               </View>
             }
